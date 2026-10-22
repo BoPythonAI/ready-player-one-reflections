@@ -18,6 +18,7 @@ TERMS = (
     "三维理解", "强化学习", "人工智能", "生成模型", "物理引擎", "人体运动",
     "数字人", "元宇宙", "机器人学", "三维环境", "虚拟社交平台",
     "PhysX", "MuJoCo", "Mesh", "3DGS", "NeRF", "VLM", "VLA", "GPT",
+    "3D建模", "3D角色", "推荐算法",
 )
 TERM_PATTERN = re.compile("|".join(re.escape(term) for term in sorted(TERMS, key=len, reverse=True)))
 TERMS_DIR = ROOT / "assets" / "terms"
