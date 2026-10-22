@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1136" height="164" viewBox="0 0 1136 164" role="img" aria-label="头号玩家的一点遐想">
+  <defs>
+    <linearGradient id="rainbow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f53634"/>
+      <stop offset="20%" stop-color="#ff922d"/>
+      <stop offset="39%" stop-color="#ffe732"/>
+      <stop offset="58%" stop-color="#51e753"/>
+      <stop offset="78%" stop-color="#02d8e4"/>
+      <stop offset="100%" stop-color="#3654f5"/>
+    </linearGradient>
+  </defs>
+  <text x="28" y="128" fill="url(#rainbow)" font-family="Microsoft YaHei, PingFang SC, Noto Sans CJK SC, sans-serif" font-size="112" font-weight="900">头</text>
+  <text x="148" y="128" fill="url(#rainbow)" font-family="Microsoft YaHei, PingFang SC, Noto Sans CJK SC, sans-serif" font-size="112" font-weight="900">号</text>
+  <text x="268" y="128" fill="url(#rainbow)" font-family="Microsoft YaHei, PingFang SC, Noto Sans CJK SC, sans-serif" font-size="112" font-weight="900">玩</text>
+  <text x="388" y="128" fill="url(#rainbow)" font-family="Microsoft YaHei, PingFang SC, Noto Sans CJK SC, sans-serif" font-size="112" font-weight="900">家</text>
+  <text x="508" y="128" fill="url(#rainbow)" font-family="Microsoft YaHei, PingFang SC, Noto Sans CJK SC, sans-serif" font-size="112" font-weight="900">的</text>
+  <text x="628" y="128" fill="url(#rainbow)" font-family="Microsoft YaHei, PingFang SC, Noto Sans CJK SC, sans-serif" font-size="112" font-weight="900">一</text>
+  <text x="748" y="128" fill="url(#rainbow)" font-family="Microsoft YaHei, PingFang SC, Noto Sans CJK SC, sans-serif" font-size="112" font-weight="900">点</text>
+  <text x="868" y="128" fill="url(#rainbow)" font-family="Microsoft YaHei, PingFang SC, Noto Sans CJK SC, sans-serif" font-size="112" font-weight="900">遐</text>
+  <text x="988" y="128" fill="url(#rainbow)" font-family="Microsoft YaHei, PingFang SC, Noto Sans CJK SC, sans-serif" font-size="112" font-weight="900">想</text>
+</svg>
