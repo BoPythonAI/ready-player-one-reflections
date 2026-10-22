@@ -150,7 +150,7 @@ readme = f'''<p align="center"><img src="assets/rainbow-title.svg" alt="{title}"
 
 ![以《头号玩家》为灵感的未来虚拟世界画面](assets/ready-player-one.png)
 
-<p align="center"><a href="https://bopythonai.github.io/ready-player-one-reflections/#model">旋转查看 3D 毛绒马模型</a></p>
+<p align="center"><img src="assets/horse-turntable.gif" alt="自动旋转展示的 3D 毛绒马模型" width="300"></p>
 
 {readme_body}
 '''
