@@ -4,7 +4,7 @@
 
 ![以《头号玩家》为灵感的未来虚拟世界画面](assets/ready-player-one.png)
 
-<p align="center"><img src="assets/horse-turntable-transparent.gif" alt="透明背景、自动旋转的 3D 毛绒马模型" width="300"></p>
+<p align="center"><a href="https://bopythonai.github.io/ready-player-one-reflections/#model">旋转查看 3D 毛绒马模型</a></p>
 
 这几天对<img src="assets/terms/39b7fe9f36d6.svg" alt="3D建模" height="21">挺感兴趣的，生成了一些有趣的<img src="assets/terms/53477fd5eeca.svg" alt="3D角色" height="21">，又是很巧，可能抖音<img src="assets/terms/06231185b611.svg" alt="推荐算法" height="21">过于强大，最近又刷到了电影《头号玩家》的片段，于是心血来潮，匆匆写点一些自己想法的Blog，再过十年，或许还能像朋友圈一样，看看当年（此刻一些稚嫩的想法）。。。。。
 
