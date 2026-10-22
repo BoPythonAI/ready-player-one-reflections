@@ -4,6 +4,8 @@
 
 ![以《头号玩家》为灵感的未来虚拟世界画面](assets/ready-player-one.png)
 
+<p align="center"><a href="https://bopythonai.github.io/ready-player-one-reflections/#model">旋转查看 3D 毛绒马模型</a></p>
+
 最近又刷到了电影《头号玩家》的片段。
 
 以前看这部电影，更多是被里面的 OASIS 所吸引。戴上设备，就能进入另一个几乎没有边界的世界，在那里探索、冒险，甚至过上与现实完全不同的生活。前阵子和 <img src="assets/terms/2c4e6f6c4695.svg" alt="GPT" height="21"> 聊起这部电影，突然觉得，《头号玩家》或许是人类提前写给2050年，甚至2100年<img src="assets/terms/7d8ec786a45b.svg" alt="元宇宙" height="21">时代的一封情书。

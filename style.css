@@ -46,7 +46,7 @@ main { min-height: 100vh; }
 
 .article-header {
   width: min(100% - 40px, 900px);
-  margin: -2.5rem auto 5.5rem;
+  margin: -2.5rem auto 3rem;
   position: relative;
   text-align: center;
 }
@@ -89,6 +89,35 @@ h1 span {
   font-size: clamp(.95rem, 2vw, 1.1rem);
   letter-spacing: .04em;
   line-height: 1.9;
+}
+
+.model-card {
+  width: min(100% - 48px, 340px);
+  margin: 0 auto 5rem;
+  padding: 14px 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: linear-gradient(145deg, #16233d, #0b1931);
+  box-shadow: 0 20px 65px #02081655;
+}
+
+.model-card model-viewer {
+  display: block;
+  width: 100%;
+  height: 300px;
+  border-radius: 12px;
+  background: radial-gradient(circle at 50% 42%, #40557d, #152440 67%, #0a1529);
+  cursor: grab;
+}
+
+.model-card model-viewer:active { cursor: grabbing; }
+
+.model-card figcaption {
+  margin-top: 14px;
+  color: var(--muted);
+  font-size: .75rem;
+  letter-spacing: .08em;
+  text-align: center;
 }
 
 .essay {
@@ -149,6 +178,8 @@ a:focus-visible { outline: 2px solid #ffe732; outline-offset: 4px; }
   .eyebrow { font-size: .6rem; letter-spacing: .16em; }
   h1 { font-size: clamp(1.75rem, 7.4vw, 2.8rem); gap: 0; }
   .essay { line-height: 2; }
+  .model-card { width: min(100% - 48px, 300px); margin-bottom: 3rem; }
+  .model-card model-viewer { height: 260px; }
   footer { margin-top: 3rem; }
 }
 

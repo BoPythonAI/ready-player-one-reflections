@@ -88,6 +88,7 @@ index = f'''<!doctype html>
   <meta name="description" content="{escape(paragraphs[1], quote=True)}">
   <title>{escape(title)} | BoPythonAI</title>
   <link rel="stylesheet" href="style.css">
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.4.0/model-viewer.min.js"></script>
 </head>
 <body>
   <main>
@@ -99,6 +100,10 @@ index = f'''<!doctype html>
       <h1 aria-label="{escape(title, quote=True)}">{letters}</h1>
       <p class="intro">从电影中的 OASIS，想到今天的<span class="technical-term">三维重建</span>、<span class="technical-term">物理仿真</span>与<span class="technical-term">具身智能</span>。</p>
     </header>
+    <figure id="model" class="model-card">
+      <model-viewer src="assets/decorative-plush-horse.glb" alt="可旋转的彩色毛绒马三维模型" loading="lazy" camera-controls auto-rotate auto-rotate-delay="0" rotation-per-second="16deg" touch-action="pan-y" shadow-intensity="0.8" exposure="1.1"></model-viewer>
+      <figcaption>3D 模型 · 拖动旋转 / 滚轮缩放</figcaption>
+    </figure>
     <article class="essay" aria-label="{escape(title, quote=True)}">
 {article_html}
     </article>
@@ -143,6 +148,8 @@ readme = f'''<p align="center"><img src="assets/rainbow-title.svg" alt="{title}"
 <p align="center"><a href="https://bopythonai.github.io/ready-player-one-reflections/">打开沉浸式阅读页面</a></p>
 
 ![以《头号玩家》为灵感的未来虚拟世界画面](assets/ready-player-one.png)
+
+<p align="center"><a href="https://bopythonai.github.io/ready-player-one-reflections/#model">旋转查看 3D 毛绒马模型</a></p>
 
 {readme_body}
 '''
