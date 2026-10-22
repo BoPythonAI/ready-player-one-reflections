@@ -5,6 +5,7 @@
   --ink: #e9f1ff;
   --muted: #a9b8d2;
   --line: #294062;
+  --lavender: #d4b5f8;
 }
 
 * { box-sizing: border-box; }
@@ -99,6 +100,11 @@ h1 span {
 }
 
 .essay p { margin: 0 0 1.9em; }
+
+.technical-term {
+  color: var(--lavender);
+  font-weight: 650;
+}
 
 .essay p:first-child {
   font-size: 1.22em;

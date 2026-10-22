@@ -1,17 +1,83 @@
 """Build the static reading page and the GitHub README from article.md."""
 
 from html import escape
+from hashlib import sha256
 from pathlib import Path
+import re
 
 
 ROOT = Path(__file__).parent
+TERMS = (
+    "Humanoid / Creature Control", "环境理解与自主决策", "仿真与机器人学习环境",
+    "生成式内容创作", "生成式人工智能", "三维场景表示", "角色运动与控制",
+    "Reinforcement Learning", "Gaussian Splatting", "Hyperscape Capture",
+    "Diffusion Models", "NVIDIA Isaac Sim", "Meta VR Glasses", "Horizon Worlds",
+    "Motion Tracking", "Task Planning", "计算机图形学", "物理世界建模",
+    "强化学习框架", "计算机视觉", "Meta Quest", "Orion AR", "Isaac Lab",
+    "SAM 3D", "V-JEPA", "三维重建", "物理仿真", "运动控制", "具身智能",
+    "三维理解", "强化学习", "人工智能", "生成模型", "物理引擎", "人体运动",
+    "数字人", "元宇宙", "机器人学", "三维环境", "虚拟社交平台",
+    "PhysX", "MuJoCo", "Mesh", "3DGS", "NeRF", "VLM", "VLA", "GPT",
+)
+TERM_PATTERN = re.compile("|".join(re.escape(term) for term in sorted(TERMS, key=len, reverse=True)))
+TERMS_DIR = ROOT / "assets" / "terms"
+TERMS_DIR.mkdir(parents=True, exist_ok=True)
+
+
+def term_asset(term: str) -> str:
+    """Create a readable lavender SVG for GitHub's restricted Markdown renderer."""
+    name = sha256(term.encode("utf-8")).hexdigest()[:12] + ".svg"
+    path = TERMS_DIR / name
+    def char_width(char: str) -> int:
+        if ord(char) > 0x2E80:
+            return 22
+        if char == " ":
+            return 7
+        if char in "ilI1/.-":
+            return 7
+        if char in "MWmw":
+            return 18
+        return 12
+
+    width = sum(char_width(char) for char in term) + (
+        17 if any(char.isascii() and char.isalpha() for char in term) else 6
+    )
+    path.write_text(
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="27" '
+        f'viewBox="0 0 {width} 27" role="img" aria-label="{escape(term, quote=True)}">'
+        '<style>text{fill:#895cb8}@media(prefers-color-scheme:dark){text{fill:#d4b5f8}}</style>'
+        f'<text x="2" y="21" font-family="Arial, Microsoft YaHei, PingFang SC, '
+        f'Noto Sans CJK SC, sans-serif" font-size="21" font-weight="600">{escape(term)}</text>'
+        '</svg>\n',
+        encoding="utf-8",
+    )
+    return f"assets/terms/{name}"
+
+
+def highlight(text: str, for_readme: bool = False) -> str:
+    chunks = []
+    last = 0
+    for match in TERM_PATTERN.finditer(text):
+        chunks.append(escape(text[last:match.start()]))
+        term = match.group()
+        if for_readme:
+            chunks.append(
+                f'<img src="{term_asset(term)}" alt="{escape(term, quote=True)}" height="21">'
+            )
+        else:
+            chunks.append(f'<span class="technical-term">{escape(term)}</span>')
+        last = match.end()
+    chunks.append(escape(text[last:]))
+    return "".join(chunks)
+
+
 source = (ROOT / "article.md").read_text(encoding="utf-8")
 title_line, *rest = source.strip().split("\n", 1)
 title = title_line.removeprefix("# ")
 body = rest[0].strip() if rest else ""
 paragraphs = [part.strip() for part in body.split("\n\n") if part.strip()]
 letters = "".join(f'<span aria-hidden="true">{escape(char)}</span>' for char in title)
-article_html = "\n".join(f"      <p>{escape(part)}</p>" for part in paragraphs)
+article_html = "\n".join(f"      <p>{highlight(part)}</p>" for part in paragraphs)
 
 index = f'''<!doctype html>
 <html lang="zh-CN">
@@ -31,7 +97,7 @@ index = f'''<!doctype html>
     <header class="article-header">
       <p class="eyebrow">READY PLAYER ONE · A REFLECTION</p>
       <h1 aria-label="{escape(title, quote=True)}">{letters}</h1>
-      <p class="intro">从电影中的 OASIS，想到今天的三维重建、物理仿真与具身智能。</p>
+      <p class="intro">从电影中的 OASIS，想到今天的<span class="technical-term">三维重建</span>、<span class="technical-term">物理仿真</span>与<span class="technical-term">具身智能</span>。</p>
     </header>
     <article class="essay" aria-label="{escape(title, quote=True)}">
 {article_html}
@@ -71,13 +137,14 @@ svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="{svg_width}" height="16
 '''
 (ROOT / "assets" / "rainbow-title.svg").write_text(svg, encoding="utf-8")
 
+readme_body = "\n\n".join(highlight(part, for_readme=True) for part in paragraphs)
 readme = f'''<p align="center"><img src="assets/rainbow-title.svg" alt="{title}" width="880"></p>
 
 <p align="center"><a href="https://bopythonai.github.io/ready-player-one-reflections/">打开沉浸式阅读页面</a></p>
 
 ![以《头号玩家》为灵感的未来虚拟世界画面](assets/ready-player-one.png)
 
-{body}
+{readme_body}
 '''
 (ROOT / "README.md").write_text(readme, encoding="utf-8")
 print(f"Built index.html, README.md and assets/rainbow-title.svg ({len(paragraphs)} paragraphs).")
