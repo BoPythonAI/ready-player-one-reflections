@@ -162,13 +162,7 @@ readme = f'''<p align="center"><img src="assets/rainbow-title.svg" alt="{title}"
 
 ![以《头号玩家》为灵感的未来虚拟世界画面](assets/ready-player-one.png)
 
-<p align="center"><a href="https://bopythonai.github.io/ready-player-one-reflections/#model">旋转查看 3D 毛绒马模型</a></p>
-
-<p align="center"><a href="https://bopythonai.github.io/ready-player-one-reflections/normal-view.html">查看并下载 Normal View 3D 资产</a></p>
-
-<p align="center"><a href="https://bopythonai.github.io/ready-player-one-reflections/monkey-king.html">查看孙悟空原版与 Normal View 3D 资产</a></p>
-
-<p align="center"><a href="https://bopythonai.github.io/ready-player-one-reflections/tang-sanzang.html">查看唐三藏原版与 Normal View 3D 资产</a></p>
+<p align="center"><a href="https://bopythonai.github.io/ready-player-one-reflections/3d-assets.html">3D资产</a></p>
 
 {readme_body}
 '''

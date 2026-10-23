@@ -301,6 +301,73 @@ a:focus-visible { outline: 2px solid #ffe732; outline-offset: 4px; }
 .comparison-card nav { display: flex; flex-wrap: wrap; gap: 8px 16px; font-size: .88rem; }
 .comparison-note { width: min(100% - 32px, 1120px); margin: 8px auto 36px; color: #d5d6e0; font-size: .84rem; text-align: center; }
 
+.asset-hub-page { min-height: 100vh; }
+.asset-hub-header {
+  width: min(100% - 40px, 1180px);
+  margin: 0 auto;
+  padding: 24px 0 36px;
+}
+.asset-hub-header > a { font-size: .88rem; }
+.asset-hub-header h1 {
+  display: block;
+  margin: 32px 0 8px;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1.2;
+  color: #fff;
+}
+.asset-hub-header p { margin: 0; color: var(--muted); line-height: 1.7; }
+.asset-hub-grid {
+  width: min(100% - 40px, 1180px);
+  margin: 0 auto 48px;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+.asset-hub-card {
+  min-width: 0;
+  padding: 14px 14px 20px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: linear-gradient(145deg, #16233d, #0b1931);
+  box-shadow: 0 20px 65px #02081655;
+}
+.asset-hub-images { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.asset-hub-images a { min-width: 0; text-decoration: none; }
+.asset-hub-images img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: contain;
+  border-radius: 11px;
+  background: #192744;
+}
+.asset-hub-images span { display: block; padding-top: 7px; color: var(--muted); text-align: center; font-size: .76rem; }
+.asset-hub-card h2 { margin: 18px 2px 12px; font-size: 1.3rem; color: #fff; }
+.asset-hub-card nav { display: flex; flex-wrap: wrap; gap: 8px 16px; font-size: .87rem; line-height: 1.5; }
+.asset-hub-card .asset-open {
+  display: block;
+  width: fit-content;
+  margin: 0 0 15px;
+  padding: 9px 14px;
+  border: 1px solid #86b7ff;
+  border-radius: 999px;
+  color: #fff;
+  text-decoration: none;
+}
+.asset-hub-card .asset-open:hover { background: #294062; }
+
+@media (min-width: 651px) and (max-width: 950px) {
+  .asset-hub-grid { max-width: 740px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .asset-hub-card:last-child { grid-column: 1 / -1; width: min(100%, 360px); justify-self: center; }
+}
+
+@media (max-width: 650px) {
+  .asset-hub-header { padding-bottom: 26px; }
+  .asset-hub-header h1 { margin-top: 24px; }
+  .asset-hub-grid { max-width: 390px; grid-template-columns: 1fr; }
+}
+
 @media (max-width: 700px) {
   .normal-header { flex-wrap: wrap; justify-content: center; gap: 10px 18px; }
   .normal-header > div { order: -1; width: 100%; }
