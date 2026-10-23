@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#303238">
+  <meta name="description" content="毛绒马 3D 模型的蓝紫绿色法线可视化，提供 GLB 与法线贴图下载。">
+  <title>毛绒马 · Normal View | BoPythonAI</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preload" href="assets/decorative-plush-horse-normal-view-poster.webp" as="image" type="image/webp">
+  <link rel="preload" href="assets/decorative-plush-horse-normal-view.glb" as="fetch" type="model/gltf-binary" crossorigin>
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.4.0/model-viewer.min.js"></script>
+</head>
+<body class="normal-page">
+  <header class="normal-header">
+    <a class="normal-back" href="./#model">← 返回文章</a>
+    <div>
+      <p class="normal-eyebrow">3D ASSET · NORMAL VIEW</p>
+      <h1>毛绒马的法线视图</h1>
+    </div>
+    <a class="normal-primary-download" href="assets/decorative-plush-horse-normal-view.glb" download>下载 3D GLB</a>
+  </header>
+  <main class="normal-main">
+    <model-viewer src="assets/decorative-plush-horse-normal-view.glb" poster="assets/decorative-plush-horse-normal-view-poster.webp" alt="蓝紫绿色法线可视化的毛绒马三维模型" loading="eager" camera-controls camera-orbit="35deg 75deg 2.35m" interaction-prompt="none" touch-action="pan-y"></model-viewer>
+    <div class="normal-details">
+      <p>拖动旋转 · 滚轮缩放</p>
+      <nav aria-label="下载法线资源">
+        <a href="assets/decorative-plush-horse-normal-map.png" download>原始切线法线贴图 PNG</a>
+        <a href="assets/decorative-plush-horse-normal-view-texture.png" download>烘焙物体空间法线 PNG</a>
+        <a href="assets/decorative-plush-horse-normal-view-color.png" download>蓝紫绿色可视化纹理 PNG</a>
+      </nav>
+    </div>
+  </main>
+</body>
+</html>

@@ -105,7 +105,7 @@ index = f'''<!doctype html>
     </header>
     <figure id="model" class="model-card">
       <model-viewer src="assets/decorative-plush-horse-optimized.glb" poster="assets/decorative-plush-horse-poster.webp" alt="可旋转的彩色毛绒马三维模型" loading="eager" camera-controls camera-orbit="30deg 75deg auto" auto-rotate auto-rotate-delay="0" rotation-per-second="16deg" interaction-prompt="none" touch-action="pan-y" shadow-intensity="0.8" exposure="1.1"></model-viewer>
-      <figcaption>3D 模型 · 拖动旋转 / 滚轮缩放</figcaption>
+      <figcaption>3D 模型 · 拖动旋转 / 滚轮缩放<br><a href="normal-view.html">查看蓝紫绿色法线视图</a></figcaption>
     </figure>
     <article class="essay" aria-label="{escape(title, quote=True)}">
 {article_html}
@@ -153,6 +153,8 @@ readme = f'''<p align="center"><img src="assets/rainbow-title.svg" alt="{title}"
 ![以《头号玩家》为灵感的未来虚拟世界画面](assets/ready-player-one.png)
 
 <p align="center"><a href="https://bopythonai.github.io/ready-player-one-reflections/#model">旋转查看 3D 毛绒马模型</a></p>
+
+<p align="center"><a href="https://bopythonai.github.io/ready-player-one-reflections/normal-view.html">查看并下载 Normal View 3D 资产</a></p>
 
 {readme_body}
 '''
