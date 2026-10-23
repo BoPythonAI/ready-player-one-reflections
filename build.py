@@ -103,10 +103,16 @@ index = f'''<!doctype html>
       <h1 aria-label="{escape(title, quote=True)}">{letters}</h1>
       <p class="intro">从电影中的 OASIS，想到今天的<span class="technical-term">三维重建</span>、<span class="technical-term">物理仿真</span>与<span class="technical-term">具身智能</span>。</p>
     </header>
-    <figure id="model" class="model-card">
-      <model-viewer src="assets/decorative-plush-horse-optimized.glb" poster="assets/decorative-plush-horse-poster.webp" alt="可旋转的彩色毛绒马三维模型" loading="eager" camera-controls camera-orbit="30deg 75deg auto" auto-rotate auto-rotate-delay="0" rotation-per-second="16deg" interaction-prompt="none" touch-action="pan-y" shadow-intensity="0.8" exposure="1.1"></model-viewer>
-      <figcaption>3D 模型 · 拖动旋转 / 滚轮缩放<br><a href="normal-view.html">查看蓝紫绿色法线视图</a></figcaption>
-    </figure>
+    <section id="model" class="model-gallery" aria-label="可交互的 3D 模型">
+      <figure class="model-card">
+        <model-viewer src="assets/decorative-plush-horse-optimized.glb" poster="assets/decorative-plush-horse-poster.webp" alt="可旋转的彩色毛绒马三维模型" loading="eager" camera-controls camera-orbit="30deg 75deg auto" auto-rotate auto-rotate-delay="0" rotation-per-second="16deg" interaction-prompt="none" touch-action="pan-y" shadow-intensity="0.8" exposure="1.1"></model-viewer>
+        <figcaption><strong>毛绒马</strong><span>拖动旋转 · 滚轮缩放</span><a href="normal-view.html">查看法线视图</a></figcaption>
+      </figure>
+      <figure class="model-card">
+        <model-viewer src="assets/monkey-king-preview.glb" poster="assets/monkey-king-poster.webp" alt="可旋转的彩色孙悟空三维模型" loading="eager" camera-controls camera-orbit="25deg 75deg auto" auto-rotate auto-rotate-delay="0" rotation-per-second="16deg" interaction-prompt="none" touch-action="pan-y" shadow-intensity="0.8" exposure="1.1"></model-viewer>
+        <figcaption><strong>孙悟空</strong><span>拖动旋转 · 滚轮缩放</span><a href="monkey-king.html">原版与法线视图</a></figcaption>
+      </figure>
+    </section>
     <article class="essay" aria-label="{escape(title, quote=True)}">
 {article_html}
     </article>
@@ -155,6 +161,8 @@ readme = f'''<p align="center"><img src="assets/rainbow-title.svg" alt="{title}"
 <p align="center"><a href="https://bopythonai.github.io/ready-player-one-reflections/#model">旋转查看 3D 毛绒马模型</a></p>
 
 <p align="center"><a href="https://bopythonai.github.io/ready-player-one-reflections/normal-view.html">查看并下载 Normal View 3D 资产</a></p>
+
+<p align="center"><a href="https://bopythonai.github.io/ready-player-one-reflections/monkey-king.html">查看孙悟空原版与 Normal View 3D 资产</a></p>
 
 {readme_body}
 '''

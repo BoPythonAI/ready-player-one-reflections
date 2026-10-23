@@ -1,6 +1,7 @@
-"""Bake the horse's shaded normals into a viewable GLB with no lighting dependency.
+"""Bake a model's shaded normals into a viewable GLB with no lighting dependency.
 
 Run with Blender 5.2+: blender -b -t 8 --python make_normal_view.py
+Pass -- --source assets/monkey-king-original.glb --prefix monkey-king for another model.
 The tangent normal map is extracted byte-for-byte from the input GLB. The baked
 object-space normal texture combines its detail with the mesh surface normals.
 """
@@ -8,16 +9,22 @@ object-space normal texture combines its detail with the mesh surface normals.
 import json
 from pathlib import Path
 import struct
+import sys
+import argparse
 
 import bpy
 
 
 ROOT = Path(__file__).resolve().parent
 ASSETS = ROOT / "assets"
-SOURCE = ASSETS / "decorative-plush-horse-optimized.glb"
-TANGENT_MAP = ASSETS / "decorative-plush-horse-normal-map.png"
-VIEW_MAP = ASSETS / "decorative-plush-horse-normal-view-texture.png"
-VIEW_GLB = ASSETS / "decorative-plush-horse-normal-view.glb"
+parser = argparse.ArgumentParser()
+parser.add_argument("--source", type=Path, default=ASSETS / "decorative-plush-horse-optimized.glb")
+parser.add_argument("--prefix", default="decorative-plush-horse")
+parser.add_argument("--preview", action="store_true")
+args = parser.parse_args(sys.argv[sys.argv.index("--") + 1:] if "--" in sys.argv else [])
+SOURCE = args.source if args.source.is_absolute() else ROOT / args.source
+VIEW_MAP = ASSETS / f"{args.prefix}-normal-view-texture.png"
+VIEW_GLB = ASSETS / f"{args.prefix}-normal-view.glb"
 
 
 def read_glb(path):
@@ -47,9 +54,10 @@ def write_glb(path, gltf, binary):
 
 
 source_gltf, source_binary = read_glb(SOURCE)
-normal_texture = source_gltf["materials"][0]["normalTexture"]
+normal_texture = next(material["normalTexture"] for material in source_gltf["materials"] if "normalTexture" in material)
 image = source_gltf["images"][source_gltf["textures"][normal_texture["index"]]["source"]]
-assert image["mimeType"] == "image/png"
+extension = {"image/png": "png", "image/jpeg": "jpg"}[image["mimeType"]]
+TANGENT_MAP = ASSETS / f"{args.prefix}-normal-map.{extension}"
 view = source_gltf["bufferViews"][image["bufferView"]]
 offset = view.get("byteOffset", 0)
 TANGENT_MAP.write_bytes(source_binary[offset:offset + view["byteLength"]])
@@ -61,9 +69,20 @@ meshes = [obj for obj in bpy.context.scene.objects if obj.type == "MESH"]
 assert len(meshes) == 1 and meshes[0].data.uv_layers
 mesh = meshes[0]
 
+if args.preview:
+    bpy.ops.object.select_all(action="DESELECT")
+    mesh.select_set(True)
+    bpy.context.view_layer.objects.active = mesh
+    bpy.ops.export_scene.gltf(
+        filepath=str(ASSETS / f"{args.prefix}-preview.glb"),
+        export_format="GLB", use_selection=True,
+        export_image_format="AUTO", export_copyright="BoPythonAI",
+        export_draco_mesh_compression_enable=True,
+    )
+
 # Keep the imported PBR material while baking: its tangent normal map supplies
 # fine details that would be absent from geometry normals alone.
-image = bpy.data.images.new("Horse Normal View", width=2048, height=2048, alpha=False)
+image = bpy.data.images.new(f"{args.prefix} Normal View", width=2048, height=2048, alpha=False)
 for material in mesh.data.materials:
     target = material.node_tree.nodes.new("ShaderNodeTexImage")
     target.name = "Normal View Bake Target"

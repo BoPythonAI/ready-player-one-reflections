@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#303238">
+  <meta name="description" content="孙悟空 3D 模型的原版与蓝紫绿色法线可视化，提供原始 GLB、Normal View GLB 和法线贴图下载。">
+  <title>孙悟空 · 原版与 Normal View | BoPythonAI</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preload" href="assets/monkey-king-poster.webp" as="image" type="image/webp">
+  <link rel="preload" href="assets/monkey-king-preview.glb" as="fetch" type="model/gltf-binary" crossorigin>
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.4.0/model-viewer.min.js"></script>
+</head>
+<body class="normal-page">
+  <header class="normal-header">
+    <a class="normal-back" href="./#model">← 返回文章</a>
+    <div>
+      <p class="normal-eyebrow">3D ASSET · ORIGINAL + NORMAL VIEW</p>
+      <h1>孙悟空的 3D 模型</h1>
+    </div>
+    <a class="normal-primary-download" href="assets/monkey-king-original.glb" download>下载原始 GLB</a>
+  </header>
+  <main class="comparison-main">
+    <figure class="comparison-card model-original">
+      <model-viewer src="assets/monkey-king-preview.glb" poster="assets/monkey-king-poster.webp" alt="彩色孙悟空三维模型" loading="eager" camera-controls camera-orbit="25deg 75deg auto" interaction-prompt="none" touch-action="pan-y" shadow-intensity="0.8" exposure="1.1"></model-viewer>
+      <figcaption>
+        <h2>原版外观</h2>
+        <p>拖动旋转 · 滚轮缩放</p>
+        <nav aria-label="下载原版模型"><a href="assets/monkey-king-original.glb" download>原始 GLB · 76 MB</a><a href="assets/monkey-king-preview.glb" download>网页预览压缩版 GLB</a></nav>
+      </figcaption>
+    </figure>
+    <figure class="comparison-card">
+      <model-viewer src="assets/monkey-king-normal-view.glb" poster="assets/monkey-king-normal-view-poster.webp" alt="蓝紫绿色法线可视化的孙悟空三维模型" loading="eager" camera-controls camera-orbit="25deg 75deg auto" interaction-prompt="none" touch-action="pan-y"></model-viewer>
+      <figcaption>
+        <h2>Normal View · 法线视图</h2>
+        <p>结合原始切线法线贴图与模型表面法线烘焙</p>
+        <nav aria-label="下载法线资源">
+          <a href="assets/monkey-king-normal-view.glb" download>Normal View GLB</a>
+          <a href="assets/monkey-king-normal-map.jpg" download>原始切线法线贴图 JPG</a>
+          <a href="assets/monkey-king-normal-view-texture.png" download>烘焙物体空间法线 PNG</a>
+          <a href="assets/monkey-king-normal-view-color.png" download>蓝紫绿色可视化纹理 PNG</a>
+        </nav>
+      </figcaption>
+    </figure>
+  </main>
+  <p class="comparison-note"><a href="normal-view.html">查看毛绒马的法线视图</a></p>
+</body>
+</html>

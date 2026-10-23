@@ -8,15 +8,19 @@ in the Normal View GLB is recolored.
 import json
 from pathlib import Path
 import struct
+import argparse
 
 import numpy as np
 from PIL import Image
 
 
 ASSETS = Path(__file__).resolve().parent / "assets"
-RAW = ASSETS / "decorative-plush-horse-normal-view-texture.png"
-COLORED = ASSETS / "decorative-plush-horse-normal-view-color.png"
-MODEL = ASSETS / "decorative-plush-horse-normal-view.glb"
+parser = argparse.ArgumentParser()
+parser.add_argument("--prefix", default="decorative-plush-horse")
+args = parser.parse_args()
+RAW = ASSETS / f"{args.prefix}-normal-view-texture.png"
+COLORED = ASSETS / f"{args.prefix}-normal-view-color.png"
+MODEL = ASSETS / f"{args.prefix}-normal-view.glb"
 
 raw = np.asarray(Image.open(RAW).convert("RGB"), dtype=np.float32)
 r, g, b = raw[..., 0], raw[..., 1], raw[..., 2]
@@ -49,7 +53,7 @@ binary = binary[:offset] + png
 binary += b"\x00" * (-len(binary) % 4)
 view["byteLength"] = len(png)
 gltf["buffers"][0]["byteLength"] = len(binary)
-image["name"] = "decorative-plush-horse-normal-view-color"
+image["name"] = f"{args.prefix}-normal-view-color"
 
 json_bytes = json.dumps(gltf, separators=(",", ":")).encode("utf-8")
 json_bytes += b" " * (-len(json_bytes) % 4)

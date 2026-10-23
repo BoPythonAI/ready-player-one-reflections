@@ -8,6 +8,8 @@
 
 <p align="center"><a href="https://bopythonai.github.io/ready-player-one-reflections/normal-view.html">查看并下载 Normal View 3D 资产</a></p>
 
+<p align="center"><a href="https://bopythonai.github.io/ready-player-one-reflections/monkey-king.html">查看孙悟空原版与 Normal View 3D 资产</a></p>
+
 这几天对<img src="assets/terms/39b7fe9f36d6.svg" alt="3D建模" height="21">挺感兴趣的，生成了一些有趣的<img src="assets/terms/53477fd5eeca.svg" alt="3D角色" height="21">，又是很巧，可能抖音<img src="assets/terms/06231185b611.svg" alt="推荐算法" height="21">过于强大，最近又刷到了电影《头号玩家》的片段，于是心血来潮，匆匆写点一些自己想法的Blog，再过十年，或许还能像朋友圈一样，看看当年（此刻一些稚嫩的想法）。。。。。
 
 以前看这部电影，更多是被里面的 OASIS 所吸引。戴上设备，就能进入另一个几乎没有边界的世界，在那里探索、冒险，甚至过上与现实完全不同的生活。前阵子和 <img src="assets/terms/2c4e6f6c4695.svg" alt="GPT" height="21"> 聊起这部电影，突然觉得，《头号玩家》或许是人类提前写给2050年，甚至2100年<img src="assets/terms/7d8ec786a45b.svg" alt="元宇宙" height="21">时代的一封情书。
