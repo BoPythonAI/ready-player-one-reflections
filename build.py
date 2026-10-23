@@ -92,9 +92,11 @@ index = f'''<!doctype html>
   <link rel="preload" href="assets/decorative-plush-horse-poster.webp" as="image" type="image/webp">
   <link rel="preload" href="assets/monkey-king-poster.webp" as="image" type="image/webp">
   <link rel="preload" href="assets/tang-sanzang-poster.webp" as="image" type="image/webp">
+  <link rel="preload" href="assets/sha-seng-poster.webp" as="image" type="image/webp">
   <link rel="preload" href="assets/decorative-plush-horse-optimized.glb" as="fetch" type="model/gltf-binary" crossorigin>
   <link rel="preload" href="assets/monkey-king-home.glb" as="fetch" type="model/gltf-binary" crossorigin>
   <link rel="preload" href="assets/tang-sanzang-home.glb" as="fetch" type="model/gltf-binary" crossorigin>
+  <link rel="preload" href="assets/sha-seng-home.glb" as="fetch" type="model/gltf-binary" crossorigin>
   <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.4.0/model-viewer.min.js"></script>
 </head>
 <body>
@@ -119,6 +121,10 @@ index = f'''<!doctype html>
       <figure class="model-card">
         <model-viewer src="assets/tang-sanzang-home.glb" poster="assets/tang-sanzang-poster.webp" alt="可旋转的彩色唐三藏三维模型" loading="eager" camera-controls camera-orbit="25deg 75deg auto" interaction-prompt="none" touch-action="pan-y" shadow-intensity="0.8" exposure="1.1"></model-viewer>
         <figcaption><strong>唐三藏</strong><span>拖动旋转 · 滚轮缩放</span><a href="tang-sanzang.html">原版与法线视图</a></figcaption>
+      </figure>
+      <figure class="model-card">
+        <model-viewer src="assets/sha-seng-home.glb" poster="assets/sha-seng-poster.webp" alt="可旋转的彩色沙僧三维模型" loading="eager" camera-controls camera-orbit="25deg 75deg auto" interaction-prompt="none" touch-action="pan-y" shadow-intensity="0.8" exposure="1.1"></model-viewer>
+        <figcaption><strong>沙僧</strong><span>拖动旋转 · 滚轮缩放</span><a href="sha-seng.html">原版与法线视图</a></figcaption>
       </figure>
     </section>
     <article class="essay" aria-label="{escape(title, quote=True)}">
