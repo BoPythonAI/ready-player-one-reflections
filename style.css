@@ -92,10 +92,10 @@ h1 span {
 }
 
 .model-gallery {
-  width: min(100% - 48px, 740px);
+  width: min(100% - 48px, 1100px);
   margin: 0 auto 5rem;
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 20px;
 }
 
@@ -180,6 +180,11 @@ footer {
 a { color: #a6ceff; text-underline-offset: .3em; }
 a:hover { color: #fff; }
 a:focus-visible { outline: 2px solid #ffe732; outline-offset: 4px; }
+
+@media (min-width: 601px) and (max-width: 900px) {
+  .model-gallery { width: min(100% - 48px, 740px); grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .model-card:last-child { grid-column: 1 / -1; width: min(100%, 360px); justify-self: center; }
+}
 
 @media (max-width: 600px) {
   .hero img {

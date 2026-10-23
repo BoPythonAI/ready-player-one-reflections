@@ -112,6 +112,10 @@ index = f'''<!doctype html>
         <model-viewer src="assets/monkey-king-preview.glb" poster="assets/monkey-king-poster.webp" alt="可旋转的彩色孙悟空三维模型" loading="eager" camera-controls camera-orbit="25deg 75deg auto" auto-rotate auto-rotate-delay="0" rotation-per-second="16deg" interaction-prompt="none" touch-action="pan-y" shadow-intensity="0.8" exposure="1.1"></model-viewer>
         <figcaption><strong>孙悟空</strong><span>拖动旋转 · 滚轮缩放</span><a href="monkey-king.html">原版与法线视图</a></figcaption>
       </figure>
+      <figure class="model-card">
+        <model-viewer src="assets/tang-sanzang-preview.glb" poster="assets/tang-sanzang-poster.webp" alt="可旋转的彩色唐三藏三维模型" loading="eager" camera-controls camera-orbit="25deg 75deg auto" auto-rotate auto-rotate-delay="0" rotation-per-second="16deg" interaction-prompt="none" touch-action="pan-y" shadow-intensity="0.8" exposure="1.1"></model-viewer>
+        <figcaption><strong>唐三藏</strong><span>拖动旋转 · 滚轮缩放</span><a href="tang-sanzang.html">原版与法线视图</a></figcaption>
+      </figure>
     </section>
     <article class="essay" aria-label="{escape(title, quote=True)}">
 {article_html}
@@ -163,6 +167,8 @@ readme = f'''<p align="center"><img src="assets/rainbow-title.svg" alt="{title}"
 <p align="center"><a href="https://bopythonai.github.io/ready-player-one-reflections/normal-view.html">查看并下载 Normal View 3D 资产</a></p>
 
 <p align="center"><a href="https://bopythonai.github.io/ready-player-one-reflections/monkey-king.html">查看孙悟空原版与 Normal View 3D 资产</a></p>
+
+<p align="center"><a href="https://bopythonai.github.io/ready-player-one-reflections/tang-sanzang.html">查看唐三藏原版与 Normal View 3D 资产</a></p>
 
 {readme_body}
 '''
