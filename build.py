@@ -89,12 +89,14 @@ index = f'''<!doctype html>
   <meta name="description" content="{escape(paragraphs[1], quote=True)}">
   <title>{escape(title)} | BoPythonAI</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="preload" href="assets/decorative-plush-horse-poster.webp" as="image" type="image/webp">
+  <link rel="preload" href="assets/decorative-plush-horse-optimized.glb" as="fetch" type="model/gltf-binary" crossorigin>
   <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.4.0/model-viewer.min.js"></script>
 </head>
 <body>
   <main>
     <figure class="hero">
-      <img src="assets/ready-player-one.png" alt="以《头号玩家》为灵感的未来虚拟世界画面" width="1671" height="943" fetchpriority="high">
+      <img src="assets/ready-player-one.png" alt="以《头号玩家》为灵感的未来虚拟世界画面" width="1671" height="943" loading="lazy">
     </figure>
     <header class="article-header">
       <p class="eyebrow">READY PLAYER ONE · A REFLECTION</p>
@@ -102,7 +104,7 @@ index = f'''<!doctype html>
       <p class="intro">从电影中的 OASIS，想到今天的<span class="technical-term">三维重建</span>、<span class="technical-term">物理仿真</span>与<span class="technical-term">具身智能</span>。</p>
     </header>
     <figure id="model" class="model-card">
-      <model-viewer src="assets/decorative-plush-horse.glb" alt="可旋转的彩色毛绒马三维模型" loading="lazy" camera-controls auto-rotate auto-rotate-delay="0" rotation-per-second="16deg" touch-action="pan-y" shadow-intensity="0.8" exposure="1.1"></model-viewer>
+      <model-viewer src="assets/decorative-plush-horse-optimized.glb" poster="assets/decorative-plush-horse-poster.webp" alt="可旋转的彩色毛绒马三维模型" loading="eager" camera-controls camera-orbit="30deg 75deg auto" auto-rotate auto-rotate-delay="0" rotation-per-second="16deg" interaction-prompt="none" touch-action="pan-y" shadow-intensity="0.8" exposure="1.1"></model-viewer>
       <figcaption>3D 模型 · 拖动旋转 / 滚轮缩放</figcaption>
     </figure>
     <article class="essay" aria-label="{escape(title, quote=True)}">
