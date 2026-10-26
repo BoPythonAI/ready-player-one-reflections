@@ -60,27 +60,14 @@ main { min-height: 100vh; }
   letter-spacing: .22em;
 }
 
-h1 {
-  display: flex;
-  justify-content: center;
-  flex-wrap: nowrap;
-  gap: .025em;
+.article-header h1 {
   margin: 0;
-  font-family: "Noto Sans CJK SC", "Microsoft YaHei", "PingFang SC", sans-serif;
-  font-size: clamp(2rem, 6.2vw, 5.5rem);
-  font-weight: 900;
-  letter-spacing: -.025em;
-  line-height: 1.3;
 }
 
-h1 span {
-  display: inline-block;
-  flex: none;
-  color: #ffe732;
-  background: linear-gradient(90deg, #f53634 0%, #ff922d 20%, #ffe732 39%, #51e753 58%, #02d8e4 78%, #3654f5 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.title-art {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .intro {
@@ -194,7 +181,6 @@ a:focus-visible { outline: 2px solid #ffe732; outline-offset: 4px; }
 
   .article-header { margin-top: -.6rem; margin-bottom: 3rem; }
   .eyebrow { font-size: .6rem; letter-spacing: .16em; }
-  h1 { font-size: clamp(1.75rem, 7.4vw, 2.8rem); gap: 0; }
   .essay { line-height: 2; }
   .model-gallery { width: min(100% - 48px, 340px); grid-template-columns: 1fr; margin-bottom: 3rem; }
   .model-card model-viewer { height: 260px; }

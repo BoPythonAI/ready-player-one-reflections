@@ -3,6 +3,7 @@
 from html import escape
 from hashlib import sha256
 from pathlib import Path
+import json
 import re
 
 
@@ -77,7 +78,6 @@ title_line, *rest = source.strip().split("\n", 1)
 title = title_line.removeprefix("# ")
 body = rest[0].strip() if rest else ""
 paragraphs = [part.strip() for part in body.split("\n\n") if part.strip()]
-letters = "".join(f'<span aria-hidden="true">{escape(char)}</span>' for char in title)
 article_html = "\n".join(f"      <p>{highlight(part)}</p>" for part in paragraphs)
 
 index = f'''<!doctype html>
@@ -106,7 +106,7 @@ index = f'''<!doctype html>
     </figure>
     <header class="article-header">
       <p class="eyebrow">READY PLAYER ONE · A REFLECTION</p>
-      <h1 aria-label="{escape(title, quote=True)}">{letters}</h1>
+      <h1 aria-label="{escape(title, quote=True)}"><img class="title-art" src="assets/rainbow-title-cartoon.svg" alt=""></h1>
       <p class="intro">从电影中的 OASIS，想到今天的<span class="technical-term">三维重建</span>、<span class="technical-term">物理仿真</span>与<span class="technical-term">具身智能</span>。</p>
     </header>
     <section id="model" class="model-gallery" aria-label="可交互的 3D 模型">
@@ -140,16 +140,26 @@ index = f'''<!doctype html>
 '''
 (ROOT / "index.html").write_text(index, encoding="utf-8")
 
-spacing = 120
-start_x = 28
-svg_chars = "\n".join(
-    f'  <text x="{start_x + i * spacing}" y="128" fill="url(#rainbow)" '
-    f'font-family="Microsoft YaHei, PingFang SC, Noto Sans CJK SC, sans-serif" '
-    f'font-size="112" font-weight="900">{escape(char)}</text>'
-    for i, char in enumerate(title)
-)
-svg_width = start_x * 2 + spacing * len(title)
-svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="{svg_width}" height="164" viewBox="0 0 {svg_width} 164" role="img" aria-label="{escape(title, quote=True)}">
+title_outlines = json.loads((ROOT / "assets" / "cartoon-title-glyphs.json").read_text(encoding="utf-8"))
+if title_outlines["title"] != title or "".join(g["char"] for g in title_outlines["glyphs"]) != title:
+    raise ValueError("The title changed; regenerate assets/cartoon-title-glyphs.json")
+
+scale = 132 / title_outlines["units_per_em"]
+spacing = 9
+start_x = 20
+baseline = 124
+x = start_x
+svg_chars = []
+for glyph in title_outlines["glyphs"]:
+    svg_chars.append(
+        f'  <path d="{escape(glyph["path"], quote=True)}" '
+        f'transform="translate({x:.2f} {baseline}) scale({scale} -{scale})" '
+        'fill="url(#rainbow)" stroke="#0b1429" stroke-width="16" '
+        'stroke-linejoin="round" paint-order="stroke fill"/>'
+    )
+    x += glyph["advance"] * scale + spacing
+svg_width = round(x - spacing + start_x)
+svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="{svg_width}" height="150" viewBox="0 0 {svg_width} 150" role="img" aria-label="{escape(title, quote=True)}">
   <defs>
     <linearGradient id="rainbow" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" stop-color="#f53634"/>
@@ -160,13 +170,13 @@ svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="{svg_width}" height="16
       <stop offset="100%" stop-color="#3654f5"/>
     </linearGradient>
   </defs>
-{svg_chars}
+{chr(10).join(svg_chars)}
 </svg>
 '''
-(ROOT / "assets" / "rainbow-title.svg").write_text(svg, encoding="utf-8")
+(ROOT / "assets" / "rainbow-title-cartoon.svg").write_text(svg, encoding="utf-8")
 
 readme_body = "\n\n".join(highlight(part, for_readme=True) for part in paragraphs)
-readme = f'''<p align="center"><img src="assets/rainbow-title.svg" alt="{title}" width="880"></p>
+readme = f'''<p align="center"><img src="assets/rainbow-title-cartoon.svg" alt="{title}" width="880"></p>
 
 <p align="center"><a href="https://bopythonai.github.io/ready-player-one-reflections/">打开沉浸式阅读页面</a></p>
 
@@ -177,4 +187,4 @@ readme = f'''<p align="center"><img src="assets/rainbow-title.svg" alt="{title}"
 {readme_body}
 '''
 (ROOT / "README.md").write_text(readme, encoding="utf-8")
-print(f"Built index.html, README.md and assets/rainbow-title.svg ({len(paragraphs)} paragraphs).")
+print(f"Built index.html, README.md and assets/rainbow-title-cartoon.svg ({len(paragraphs)} paragraphs).")

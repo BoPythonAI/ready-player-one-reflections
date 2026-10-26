@@ -1,4 +1,4 @@
-<p align="center"><img src="assets/rainbow-title.svg" alt="头号玩家的一点遐想" width="880"></p>
+<p align="center"><img src="assets/rainbow-title-cartoon.svg" alt="头号玩家的一点遐想" width="880"></p>
 
 <p align="center"><a href="https://bopythonai.github.io/ready-player-one-reflections/">打开沉浸式阅读页面</a></p>
 
