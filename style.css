@@ -136,13 +136,13 @@ main { min-height: 100vh; }
   font-weight: 650;
 }
 
-.essay p:first-child {
+.essay > p:first-child {
   font-size: 1.22em;
   font-weight: 600;
   color: #fff;
 }
 
-.essay p:nth-child(8) {
+.essay blockquote {
   margin: 2.25em 0;
   padding: .65em 0 .65em 1.25em;
   border-left: 3px solid #83bfff;
@@ -150,6 +150,11 @@ main { min-height: 100vh; }
   font-size: 1.14em;
   font-weight: 600;
 }
+
+.essay blockquote p { margin: 0; }
+.essay strong { color: #f9fbff; font-weight: 700; }
+.essay .article-date { margin-top: 2.5rem; color: var(--muted); font-size: .86em; }
+.article-date em { font-style: normal; }
 
 footer {
   width: min(100% - 48px, 740px);

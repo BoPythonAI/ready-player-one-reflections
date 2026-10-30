@@ -20,6 +20,11 @@ TERMS = (
     "数字人", "元宇宙", "机器人学", "三维环境", "虚拟社交平台",
     "PhysX", "MuJoCo", "Mesh", "3DGS", "NeRF", "VLM", "VLA", "GPT",
     "3D建模", "3D角色", "推荐算法",
+    "3D 建模", "3D 角色", "3D 重建", "3D Reconstruction", "生成式 AI",
+    "Humanoid Control", "Humanoid", "LLM-based Agents", "AI Agent",
+    "Multi-Agent Systems", "Multi-Agent Coordination", "Multi-Agent",
+    "AI Society", "AISociety", "World Models", "世界模型", "多智能体系统",
+    "Emergence",
 )
 TERM_PATTERN = re.compile("|".join(re.escape(term) for term in sorted(TERMS, key=len, reverse=True)))
 TERMS_DIR = ROOT / "assets" / "terms"
@@ -56,7 +61,7 @@ def term_asset(term: str) -> str:
     return f"assets/terms/{name}"
 
 
-def highlight(text: str, for_readme: bool = False) -> str:
+def highlight_terms(text: str, for_readme: bool = False) -> str:
     chunks = []
     last = 0
     for match in TERM_PATTERN.finditer(text):
@@ -73,12 +78,36 @@ def highlight(text: str, for_readme: bool = False) -> str:
     return "".join(chunks)
 
 
+def highlight(text: str, for_readme: bool = False) -> str:
+    """Render the draft's emphasis together with the existing term highlighting."""
+    parts = re.split(r"(\*\*[^*]+\*\*|\*[^*]+\*)", text)
+    rendered = []
+    for part in parts:
+        if part.startswith("**") and part.endswith("**"):
+            rendered.append(f"<strong>{highlight_terms(part[2:-2], for_readme)}</strong>")
+        elif part.startswith("*") and part.endswith("*"):
+            rendered.append(f"<em>{highlight_terms(part[1:-1], for_readme)}</em>")
+        else:
+            rendered.append(highlight_terms(part, for_readme))
+    return "".join(rendered)
+
+
+def render_block(text: str, for_readme: bool = False) -> str:
+    if text.startswith("> "):
+        return f"<blockquote><p>{highlight(text[2:], for_readme)}</p></blockquote>"
+    if text.startswith("*写于 ") and text.endswith("*"):
+        return f'<p class="article-date">{highlight(text, for_readme)}</p>'
+    return f"<p>{highlight(text, for_readme)}</p>"
+
+
 source = (ROOT / "article.md").read_text(encoding="utf-8")
 title_line, *rest = source.strip().split("\n", 1)
 title = title_line.removeprefix("# ")
 body = rest[0].strip() if rest else ""
-paragraphs = [part.strip() for part in body.split("\n\n") if part.strip()]
-article_html = "\n".join(f"      <p>{highlight(part)}</p>" for part in paragraphs)
+blocks = [part.strip() for part in body.split("\n\n") if part.strip()]
+subtitle = blocks[0] if blocks and blocks[0].startswith("——") else ""
+paragraphs = blocks[1:] if subtitle else blocks
+article_html = "\n".join(f"      {render_block(part)}" for part in paragraphs)
 
 index = f'''<!doctype html>
 <html lang="zh-CN">
@@ -86,7 +115,7 @@ index = f'''<!doctype html>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#08142c">
-  <meta name="description" content="{escape(paragraphs[1], quote=True)}">
+  <meta name="description" content="{escape(subtitle.removeprefix('——') or paragraphs[0], quote=True)}">
   <title>{escape(title)} | BoPythonAI</title>
   <link rel="stylesheet" href="style.css">
   <link rel="preload" href="assets/decorative-plush-horse-poster.webp" as="image" type="image/webp">
@@ -107,7 +136,7 @@ index = f'''<!doctype html>
     <header class="article-header">
       <p class="eyebrow">READY PLAYER ONE · A REFLECTION</p>
       <h1 aria-label="{escape(title, quote=True)}"><img class="title-art" src="assets/rainbow-title-cartoon.svg" alt=""></h1>
-      <p class="intro">从电影中的 OASIS，想到今天的<span class="technical-term">三维重建</span>、<span class="technical-term">物理仿真</span>与<span class="technical-term">具身智能</span>。</p>
+      <p class="intro">{highlight(subtitle)}</p>
     </header>
     <section id="model" class="model-gallery" aria-label="可交互的 3D 模型">
       <figure class="model-card">
@@ -127,7 +156,7 @@ index = f'''<!doctype html>
         <figcaption><strong>沙僧</strong><span>拖动旋转 · 滚轮缩放</span><a href="sha-seng.html">原版与法线视图</a></figcaption>
       </figure>
     </section>
-    <article class="essay" aria-label="{escape(title, quote=True)}">
+    <article id="essay" class="essay" aria-label="{escape(title, quote=True)}">
 {article_html}
     </article>
     <footer>
@@ -175,8 +204,10 @@ svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="{svg_width}" height="15
 '''
 (ROOT / "assets" / "rainbow-title-cartoon.svg").write_text(svg, encoding="utf-8")
 
-readme_body = "\n\n".join(highlight(part, for_readme=True) for part in paragraphs)
+readme_body = "\n\n".join(render_block(part, for_readme=True) for part in paragraphs)
 readme = f'''<p align="center"><img src="assets/rainbow-title-cartoon.svg" alt="{title}" width="880"></p>
+
+<p align="center">{highlight(subtitle, for_readme=True)}</p>
 
 <p align="center"><a href="https://bopythonai.github.io/ready-player-one-reflections/">打开沉浸式阅读页面</a></p>
 
