@@ -14,7 +14,7 @@
 
 <p>地球提供环境，物理定律约束世界的运行，无数生命个体在其中感知、行动、竞争与合作，经过漫长的演化，逐渐形成复杂的生态系统与人类社会。</p>
 
-<p>从复杂系统科学的角度看，这种由个体交互产生群体行为与宏观秩序的现象，与 <img src="assets/terms/f11a3696f1c1.svg" alt="Multi-Agent Systems" height="21">（<img src="assets/terms/c909ed7b1ff1.svg" alt="多智能体系统" height="21">）中的自组织和涌现（<img src="assets/terms/dae2a6f11aab.svg" alt="Emergence" height="21">），有着某种概念上的相似性。</p>
+<p>从复杂系统科学的角度看，这种由个体交互产生群体行为与宏观秩序的现象，与 <img src="assets/terms/f11a3696f1c1.svg" alt="Multi-Agent Systems" height="21"> 中的自组织和涌现（<img src="assets/terms/dae2a6f11aab.svg" alt="Emergence" height="21">），有着某种概念上的相似性。</p>
 
 <p>当然，这只是科幻式的类比，并非关于宇宙起源的科学结论。真实生命与 <img src="assets/terms/b48c8be327b3.svg" alt="AI Agent" height="21"> 也不能简单画等号。</p>
 
